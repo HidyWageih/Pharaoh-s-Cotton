@@ -1,0 +1,6 @@
+[
+  { "name": "لوحة التحكم", "link": "/dashboard" },
+  { "name": "الملف الشخصي", "link": "/profile" },
+  { "name": "الإعدادات", "link": "/settings" },
+  { "name": "القسم الجديد", "link": "/new-section" }
+]
