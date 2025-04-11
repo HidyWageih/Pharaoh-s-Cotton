@@ -1,53 +1,55 @@
-import { useState } from "react";
+import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { signIn } from 'next-auth/react';
 
 export default function AdminPanel() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [password, setPassword] = useState("");
+  const router = useRouter();
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const handleLogin = () => {
-    // جلب كلمة المرور من ملف البيئة
-    const adminPassword = process.env.NEXT_PUBLIC_ADMIN_PASSWORD;
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    const result = await signIn('credentials', {
+      redirect: false,
+      password: password,
+    });
 
-    if (password === adminPassword) {
-      setIsAuthenticated(true);
+    if (result?.error) {
+      setError('كلمة المرور غير صحيحة!');
     } else {
-      alert("كلمة المرور غير صحيحة!");
+      router.push('/dashboard');
     }
   };
 
-  if (!isAuthenticated) {
-    return (
-      <div style={{ padding: "20px", fontFamily: "Arial" }}>
-        <h1>تسجيل الدخول</h1>
-        <p>يرجى إدخال كلمة المرور للوصول إلى لوحة التحكم:</p>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          style={{ padding: "10px", margin: "10px 0", width: "100%" }}
-        />
-        <button
-          onClick={handleLogin}
-          style={{
-            padding: "10px 20px",
-            backgroundColor: "#007bff",
-            color: "#fff",
-            border: "none",
-            borderRadius: "5px",
-            cursor: "pointer",
-          }}
-        >
-          تسجيل الدخول
-        </button>
-      </div>
-    );
-  }
-
   return (
-    <div style={{ padding: "20px", fontFamily: "Arial" }}>
-      <h1>لوحة التحكم</h1>
-      <p>مرحبًا بك! يمكنك الآن تعديل المحتوى.</p>
-      {/* باقي الكود الخاص بلوحة التحكم */}
+    <div className="marble-bg min-h-screen flex items-center justify-center p-4">
+      <div className="bg-dark-500 p-8 rounded-lg gold-border max-w-md w-full">
+        <h1 className="gold-text text-3xl font-bold mb-6 text-center">تسجيل الدخول</h1>
+        
+        {error && (
+          <div className="bg-red-900 text-white p-3 rounded mb-4">
+            {error}
+          </div>
+        )}
+
+        <form onSubmit={handleLogin}>
+          <label className="block text-gray-300 mb-2">كلمة المرور:</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full p-3 bg-dark-700 border border-gray-600 rounded mb-4 text-white"
+            required
+          />
+          
+          <button
+            type="submit"
+            className="w-full py-3 bg-gold-500 hover:bg-gold-600 text-dark-900 font-bold rounded transition"
+          >
+            دخول
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
