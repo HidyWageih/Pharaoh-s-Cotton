@@ -1,5 +1,12 @@
 {
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/nextjs"
+    }
+  ],
   "rewrites": [
-    { "source": "/", "destination": "/index" }
+    { "source": "/admin", "destination": "/admin" }
   ]
 }
