@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import sidebarData from '../data/sidebar.json';
+import sidebarData from '../data_sidebar.json';
 
 export default function Sidebar() {
   return (
