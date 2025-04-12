@@ -1,0 +1,28 @@
+# ملفات البيئة
+.env*
+!.env.example
+
+# التبعيات والمجلدات
+node_modules/
+.next/
+out/
+dist/
+
+# أنظمة التشغيل
+.DS_Store
+._*
+Thumbs.db
+Desktop.ini
+
+# إعدادات IDEs
+.vscode/
+.idea/
+
+# ملفات مؤقتة
+*.log
+*.tmp
+*.temp
+
+# Next.js
+.next/cache/
+.next/analyze/
