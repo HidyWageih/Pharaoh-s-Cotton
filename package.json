@@ -13,8 +13,8 @@
     "next": "^14.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "next-auth": "^4.24.5", // ← إضافة للمصادقة الآمنة
-    "tailwindcss": "^3.4.1"
+    "next-auth": "^4.24.5",          // للمصادقة الآمنة
+    "tailwindcss": "^3.4.1"          // للتنسيقات الداكنة
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -23,9 +23,9 @@
     "autoprefixer": "^10.4.16",
     "eslint": "^8",
     "postcss": "^8",
-    "typescript": "^5"
+    "typescript": "^5"               // اختياري إذا كنت تستخدم TypeScript
   },
   "engines": {
-    "node": ">=18.x" // ← ضروري لـ Vercel
+    "node": ">=18.x"                 // مطلوب لـ Vercel
   }
 }
